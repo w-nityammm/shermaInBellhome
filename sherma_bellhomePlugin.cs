@@ -14,7 +14,7 @@ using Object = UnityEngine.Object;
 
 namespace ShermaInBellHome
 {
-    [BepInPlugin("com.w-nityammm.ShermaInBellHome", "ShermaInBellHome", "1.0.0")]
+    [BepInPlugin("com.w-nityammm.ShermaInBellHome", "ShermaInBellHome", "1.0.1")]
     public class Plugin : BaseUnityPlugin
     {
         internal static ManualLogSource Log;
@@ -37,7 +37,7 @@ namespace ShermaInBellHome
             Log = Logger;
             SceneManager.sceneLoaded += new UnityAction<Scene, LoadSceneMode>(this.OnSceneLoaded);
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 this.shermaTakenConfigs.Add(base.Config.Bind<bool>(string.Format("Save File {0}", i), "shermaTaken", false, ""));
                 this.shermaInBellHomeConfigs.Add(base.Config.Bind<bool>(string.Format("Save File {0}", i), "shermaInBellHome", false, ""));
@@ -78,7 +78,7 @@ namespace ShermaInBellHome
                 this.shermaSceneLoaded = false;
             }
 
-            if (this.saveFileIdx >= 0 && this.saveFileIdx < 3)
+            if (this.saveFileIdx >= 0 && this.saveFileIdx < 4)
             {
                 bool flag3 = scene.name == "Belltown_Room_Spare" && this.shermaInBellHomeConfigs[this.saveFileIdx].Value;
                 if (flag3)
@@ -100,7 +100,7 @@ namespace ShermaInBellHome
 
             if (flag5)
             {
-                if (this.saveFileIdx >= 0 && this.saveFileIdx < 3)
+                if (this.saveFileIdx >= 0 && this.saveFileIdx < 4)
                 {
                     bool flag6 = !this.shermaInBellHomeConfigs[this.saveFileIdx].Value;
                     if (flag6)
@@ -242,7 +242,7 @@ namespace ShermaInBellHome
         {
             if (answer)
             {
-                if (this.saveFileIdx >= 0 && this.saveFileIdx < 3)
+                if (this.saveFileIdx >= 0 && this.saveFileIdx < 4)
                 {
                     this.shermaTakenConfigs[this.saveFileIdx].Value = true;
                     base.Config.Save();
